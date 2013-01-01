@@ -3,7 +3,6 @@ LIBRARIES := -L/home/terahz/rpi/boost/lib -L/home/terahz/rpi/cmake/lib -L../I2C/
 LIBS := -lwthttp -lwt -lboost_signals -lboost_thread -lboost_program_options -lboost_date_time -lboost_random -lboost_regex -lboost_system -lboost_filesystem -lPCA9685 -lMCP23008 -lI2C
 CXXFLAGS := -O3 -g -Wall -Werror $(INCLUDES) $(LIBRARIES) $(LIBS)
 LDFLAGS := $(LIBS) 
-DISTPATH := /mnt/aquarius
 RM := rm -rf
 
 #CXX := g++
@@ -16,8 +15,9 @@ $(NAME): $(NAME).o LEDChannel.o PowerOutlet.o
 	$(CXX) $(CXXFLAGS) -Wl,-rpath,'$$ORIGIN/lib' $^ -o $@
 
 copy:
+ifdef DISTPATH
 	cp $(NAME) $(DISTPATH)
-	
+endif
 clean:
 	$(RM)  *.o *.so* $(TEST)
 
