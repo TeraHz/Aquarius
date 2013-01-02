@@ -33,11 +33,14 @@ class PowerOutletPlugin : public AquariusPlugin {
 public:
 	PowerOutletPlugin();
 	virtual ~PowerOutletPlugin();
+	Wt::WContainerWidget * getSummary();
+	Wt::WContainerWidget * getTab();
+	std::string getName();
 private:
 	void setOutlet(int pin, int state);
 	MCP23008 *powerDriver;
 	PowerOutlet *pos[8];
-	Wt::WTable *poTable;
+	std::string name_;
 
 };
 #endif /* POPLUGIN_H_ */

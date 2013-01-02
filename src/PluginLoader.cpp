@@ -59,18 +59,18 @@ int PluginLoader::tryToAdd(const char *file){
 	std::cout << "trying to dlopen " << std::endl;
 	void *plugin_h = dlopen(file, RTLD_NOW);
 	if (!plugin_h)
-		printf("Could not open plugin %s: %s", file, dlerror());
+		std::cout << "Could not open plugin "<< file << dlerror()<<std::endl;
 	std::cout << "past dlopen " << std::endl;
 
 	create_t* create_plugin = (create_t*) dlsym(plugin_h, "create");
     destroy_t* destroy_plugin = (destroy_t*) dlsym(plugin_h, "destroy");
 
     if (!create_plugin || !destroy_plugin){
-		printf("Could not load symbols for %s: %s", file, dlerror());
+		std::cout << "Could not load symbols for "<< file << dlerror()<<std::endl;
 		return 1;
     }
 
-	std::cout << "calling create_plugin " << std::endl;
+	std::cout << "calling create_plugin" << std::endl;
 	AquariusPlugin * plugin = create_plugin();
 
 	std::cout << "done " << std::endl;
@@ -79,7 +79,7 @@ int PluginLoader::tryToAdd(const char *file){
     	plugins.push_back(plugin);
     	return 0;
     }else
-		printf("Could not create object pointer %s: %s", file, dlerror());
+		std::cout << "Could not create object pointer  "<< file << dlerror()<<std::endl;
 
 	return 1;
 }

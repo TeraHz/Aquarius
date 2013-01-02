@@ -33,7 +33,8 @@ Aquarius::Aquarius(const Wt::WEnvironment& env) :
 			if (pluginCount > 0){
 				for (ii=0; ii<pl->getPlugins().size(); ii++) {
 					std::cout << "Loading plugin"<<std::endl;
-				    root()->addWidget((AquariusPlugin*)pl->getPlugins()[ii]);
+					AquariusPlugin * plugin = pl->getPlugins()[ii];
+				    root()->addWidget(plugin->getTab());
 				}
 			}
 	}

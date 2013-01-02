@@ -12,10 +12,15 @@ NAME := LEDPlugin
 VERSION := $(MAJOR).$(MINOR)
 RM := rm -rf
 
-all: $(NAME).so 
+all: $(NAME).so copy
 
 $(NAME).so: $(NAME).o LEDChannel.o
 	$(CXX) $(CXXFLAGS) -rdynamic -shared -Wl,-soname,lib$(NAME).so.$(MAJOR) $^ -o $@
 	
 clean:
 	$(RM) *.o *.so* 
+
+copy:
+ifdef DISTPATH
+	cp $(NAME) $(DISTPATH)
+endif

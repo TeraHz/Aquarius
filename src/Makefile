@@ -11,7 +11,7 @@ NAME := Aquarius
 
 all: $(NAME) copy
 
-$(NAME): $(NAME).o PluginLoader.o
+$(NAME): $(NAME).o AquariusPlugin.hpp PluginLoader.o
 	$(CXX) $(CXXFLAGS) -Wl,-rpath,'$$ORIGIN/lib' $^ -o $@
 
 copy:

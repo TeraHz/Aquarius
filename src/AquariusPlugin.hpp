@@ -25,15 +25,15 @@
 #define _AQUARIUSPLUGIN_H
 #include <Wt/WContainerWidget>
 
-class AquariusPlugin: public Wt::WContainerWidget {
+class AquariusPlugin {
 protected:
 
 public:
-	AquariusPlugin(Wt::WContainerWidget *parent = 0):
-			WContainerWidget(parent){}
-	virtual Wt::WContainerWidget getSummary();
-	virtual Wt::WContainerWidget getTab();
-	virtual std::string getName();
+//	AquariusPlugin(){}
+	virtual ~AquariusPlugin(){};
+	virtual Wt::WContainerWidget * getSummary() = 0;
+	virtual Wt::WContainerWidget * getTab() = 0;
+	virtual std::string getName() = 0;
 
 };
 

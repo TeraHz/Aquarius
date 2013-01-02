@@ -25,6 +25,7 @@
 #define _AQUARIUS_H
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
+#include <Wt/WContainerWidget>
 #include "AquariusPlugin.hpp"
 #include "PluginLoader.h"
 

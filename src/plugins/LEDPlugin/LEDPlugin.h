@@ -23,6 +23,7 @@
 
 #ifndef LEDPLUGIN_H_
 #define LEDPLUGIN_H_
+
 #include <Wt/WContainerWidget>
 #include <Wt/WTable>
 #include "PCA9685.h"
@@ -33,11 +34,13 @@ class LEDPlugin : public AquariusPlugin {
 public:
 	LEDPlugin();
 	virtual ~LEDPlugin();
+	Wt::WContainerWidget * getSummary();
+	Wt::WContainerWidget * getTab();
+	std::string getName();
 private:
 	void setPWM(int channel, int value);
 	PCA9685 *pwmDriver;
 	LEDChannel *leds[16];
-	Wt::WTable *ledTable;
-
+	std::string name_;
 };
 #endif /* LEDPLUGIN_H_ */
