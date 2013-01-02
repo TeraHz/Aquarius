@@ -1,66 +1,53 @@
-#include <Wt/WApplication>
-#include <Wt/WBreak>
-#include <Wt/WContainerWidget>
-#include <Wt/WGroupBox>
-#include <Wt/WText>
-#include <Wt/WSpinBox>
-#include <Wt/WTable>
+/*
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *
+ * Name        : Aquarius.cpp
+ * Author      : Georgi Todorov
+ * Version     :
+ * Created on  : Dec 30, 2012
+ *
+ * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
+ */
+
 #include "Aquarius.h"
-#include "LEDChannel.h"
 
-Aquarius::Aquarius(const Wt::WEnvironment& env)
-    : Wt::WApplication(env)
-{
+Aquarius::Aquarius(const Wt::WEnvironment& env) :
+		Wt::WApplication(env) {
+	int pluginCount = 0;
+	unsigned int ii=0;
+	pl = new PluginLoader();
+	if (pl){
+		pluginCount = pl->loadPlugins("./");
+			if (pluginCount > 0){
+				for (ii=0; ii<pl->getPlugins().size(); ii++) {
+					std::cout << "Loading plugin"<<std::endl;
+				    root()->addWidget((AquariusPlugin*)pl->getPlugins()[ii]);
+				}
+			}
+	}
 
-    int ii;
-
-    setTitle("LED Control");
-    pwmDriver = new PCA9685(1,0x40);
-    powerDriver = new MCP23008(1,0x20);
-    powerDriver->setAllOutput();
-    root()->addWidget(new Wt::WText("<h2>LED Channels:</h2>"));
-    ledTable  = new Wt::WTable(root());
-    root()->addWidget(new Wt::WText("<h2>Power Outlets:</h2>"));
-    poTable = new Wt::WTable(root());
-
-    for (ii=0; ii<16; ii++){
-           LEDChannel *led = new LEDChannel(ii+1);
-           leds[ii] = led;
-           led->valueChanged().connect(this, &Aquarius::setPWM);
-           if (ii < 8)
-               ledTable->elementAt(0, ii)->addWidget(led);
-           else
-               ledTable->elementAt(1,ii-8)->addWidget(led);
-        }
-    for (ii=0; ii<8; ii++){
-           PowerOutlet *po = new PowerOutlet(ii+1);
-           pos[ii] = po;
-           po->setSelected(powerDriver->get(ii+1));
-           po->valueChanged().connect(this, &Aquarius::setOutlet);
-           poTable->elementAt(0, ii)->addWidget(po);
-        }
 }
 
-Aquarius::~Aquarius(){
-	delete pwmDriver;
-	delete powerDriver;
+Aquarius::~Aquarius() {
+
 }
 
-void Aquarius::setOutlet(int pin, int state){
-	powerDriver->set(pin, state);
+Wt::WApplication *createApplication(const Wt::WEnvironment& env) {
+	return new Aquarius(env);
 }
 
-void Aquarius::setPWM(int channel, int value)
-{
-    pwmDriver->setPWM(channel,value);
-}
-
-Wt::WApplication *createApplication(const Wt::WEnvironment& env)
-{
-    return new Aquarius(env);
-}
-
-int main(int argc, char **argv)
-{
-    return Wt::WRun(argc, argv, &createApplication);
+int main(int argc, char **argv) {
+	return Wt::WRun(argc, argv, &createApplication);
 }

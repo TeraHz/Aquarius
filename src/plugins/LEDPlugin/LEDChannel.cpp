@@ -13,29 +13,32 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : Aquarius.h
+ * Name        : LEDChannel.cpp
  * Author      : Georgi Todorov
  * Version     :
  * Created on  : Dec 30, 2012
  *
  * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
  */
+#include "LEDChannel.h"
 
-#ifndef _AQUARIUS_H
-#define _AQUARIUS_H
-#include <Wt/WApplication>
-#include <Wt/WEnvironment>
-#include "AquariusPlugin.hpp"
-#include "PluginLoader.h"
+using namespace Wt;
 
-class Aquarius : public Wt::WApplication
-{
-public:
-    Aquarius(const Wt::WEnvironment& env);
-    ~Aquarius();
-private:
-    PluginLoader *pl;
-};
+LEDChannel::LEDChannel(int channel, WContainerWidget *parent) :
+		WContainerWidget(parent), channel_(channel) {
+	setContentAlignment(AlignCenter);
+	WString title = WString("Channel {1}");
+	title.arg(channel_);
+	groupingBox_ = new WGroupBox(title, this);
 
-#endif
+	valueBox_ = new WSpinBox(groupingBox_);
+	valueBox_->setRange(0, 4095);
+	valueBox_->valueChanged().connect(this, &LEDChannel::setPWM);
+	groupingBox_->addWidget(new Wt::WBreak());
+	text_ = new WText(groupingBox_);
+	text_->setText("<small>0 - off; 4095 - max</small>");
+}
 
+void LEDChannel::setPWM() {
+	pwm_.emit(channel_, valueBox_->value());
+}

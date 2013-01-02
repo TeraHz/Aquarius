@@ -13,35 +13,32 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : LEDChannel.cpp
+ * Name        : AquariusPlugin.hpp
  * Author      : Georgi Todorov
  * Version     :
- * Created on  : Dec 30, 2012
+ * Created on  : Jan 1, 2012
  *
- * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
  */
-#include "LEDChannel.h"
 
-using namespace Wt;
+#ifndef _AQUARIUSPLUGIN_H
+#define _AQUARIUSPLUGIN_H
+#include <Wt/WContainerWidget>
 
-LEDChannel::LEDChannel(int channel, WContainerWidget *parent)
-    : WContainerWidget(parent),
-      channel_(channel)
-{
-    setContentAlignment(AlignCenter);
-    WString title = WString("Channel {1}");
-    title.arg(channel_);
-    groupingBox_ = new WGroupBox(title, this);
+class AquariusPlugin: public Wt::WContainerWidget {
+protected:
 
-    valueBox_ = new WSpinBox(groupingBox_);
-    valueBox_->setRange(0,4095);
-    valueBox_->valueChanged().connect(this, &LEDChannel::setPWM); 
-    groupingBox_->addWidget(new Wt::WBreak());
-    text_ = new WText(groupingBox_);
-    text_->setText("<small>0 - off; 4095 - max</small>");
-}
+public:
+	AquariusPlugin(Wt::WContainerWidget *parent = 0):
+			WContainerWidget(parent){}
+	virtual Wt::WContainerWidget getSummary();
+	virtual Wt::WContainerWidget getTab();
+	virtual std::string getName();
 
-void LEDChannel::setPWM()
-{
-	pwm_.emit(channel_, valueBox_->value());
-}
+};
+
+// the types of the class factories
+typedef AquariusPlugin* create_t();
+typedef void destroy_t(AquariusPlugin*);
+
+#endif /* _AQUARIUSPLUGIN_H */

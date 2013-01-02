@@ -13,29 +13,31 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : Aquarius.h
+ * Name        : LEDPlugin.h
  * Author      : Georgi Todorov
  * Version     :
- * Created on  : Dec 30, 2012
+ * Created on  : Jan 1, 2013
  *
- * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
  */
 
-#ifndef _AQUARIUS_H
-#define _AQUARIUS_H
-#include <Wt/WApplication>
-#include <Wt/WEnvironment>
+#ifndef LEDPLUGIN_H_
+#define LEDPLUGIN_H_
+#include <Wt/WContainerWidget>
+#include <Wt/WTable>
+#include "PCA9685.h"
+#include "LEDChannel.h"
 #include "AquariusPlugin.hpp"
-#include "PluginLoader.h"
 
-class Aquarius : public Wt::WApplication
-{
+class LEDPlugin : public AquariusPlugin {
 public:
-    Aquarius(const Wt::WEnvironment& env);
-    ~Aquarius();
+	LEDPlugin();
+	virtual ~LEDPlugin();
 private:
-    PluginLoader *pl;
+	void setPWM(int channel, int value);
+	PCA9685 *pwmDriver;
+	LEDChannel *leds[16];
+	Wt::WTable *ledTable;
+
 };
-
-#endif
-
+#endif /* LEDPLUGIN_H_ */

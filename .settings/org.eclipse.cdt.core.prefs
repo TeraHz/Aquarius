@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/0.720167743/PATH/delimiter=\:
+environment/project/0.720167743/PATH/operation=append
+environment/project/0.720167743/PATH/value=/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/bin\:/home/terahz/rpi/scratchbox2/bin\:/home/terahz/rpi/qemu/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games
+environment/project/0.720167743/append=true
+environment/project/0.720167743/appendContributed=true

@@ -23,12 +23,46 @@
 							<builder arguments="DISTPATH=/mnt/aquarius/" buildPath="${workspace_loc:/Aquarius}/src" command="make" id="org.eclipse.cdt.build.core.settings.default.builder.1668346136" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1246941751" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.578156165" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1817707587" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MCP23008/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PCA9685/src}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2/arm-unknown-linux-gnueabi"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2/backward"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/sysroot/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include-fixed"/>
+								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1022510341" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.353142528" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1196070741" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/terahz/rpi/cmake/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MCP23008/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PCA9685/src}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2/arm-unknown-linux-gnueabi"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2/backward"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/sysroot/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include-fixed"/>
+								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.644764685" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1292249061" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
+								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1274307832" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MCP23008/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/PCA9685/src}&quot;"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2/arm-unknown-linux-gnueabi"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/include/c++/4.7.2/backward"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/sysroot/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include"/>
+									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include-fixed"/>
+								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1428704956" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 						</toolChain>
@@ -41,16 +75,26 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="Aquarius.null.1675593631" name="Aquarius"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="0.720167743">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
 			<resource resourceType="PROJECT" workspacePath="/Aquarius"/>
 		</configuration>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="0.720167743">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile"/>
+			<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+				<buildOutputProvider>
+					<openAction enabled="true" filePath="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/bin/arm-unknown-linux-gnueabi-g++"/>
+					<parser enabled="true"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="makefileGenerator">
+					<runAction arguments="-E -P -v -dD" command="" useDefault="true"/>
+					<parser enabled="true"/>
+				</scannerInfoProvider>
+			</profile>
+		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

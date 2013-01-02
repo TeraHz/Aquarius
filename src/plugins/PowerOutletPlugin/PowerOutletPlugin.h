@@ -13,29 +13,31 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : Aquarius.h
+ * Name        : PowerOutletPlugin.h
  * Author      : Georgi Todorov
  * Version     :
- * Created on  : Dec 30, 2012
+ * Created on  : Jan 1, 2013
  *
- * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
  */
 
-#ifndef _AQUARIUS_H
-#define _AQUARIUS_H
-#include <Wt/WApplication>
-#include <Wt/WEnvironment>
+#ifndef POPLUGIN_H_
+#define POPLUGIN_H_
+#include <Wt/WContainerWidget>
+#include <Wt/WTable>
+#include "MCP23008.h"
+#include "PowerOutlet.h"
 #include "AquariusPlugin.hpp"
-#include "PluginLoader.h"
 
-class Aquarius : public Wt::WApplication
-{
+class PowerOutletPlugin : public AquariusPlugin {
 public:
-    Aquarius(const Wt::WEnvironment& env);
-    ~Aquarius();
+	PowerOutletPlugin();
+	virtual ~PowerOutletPlugin();
 private:
-    PluginLoader *pl;
+	void setOutlet(int pin, int state);
+	MCP23008 *powerDriver;
+	PowerOutlet *pos[8];
+	Wt::WTable *poTable;
+
 };
-
-#endif
-
+#endif /* POPLUGIN_H_ */

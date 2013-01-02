@@ -13,41 +13,35 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : LEDChannel.h
+ * Name        : PluginLoader.h
  * Author      : Georgi Todorov
  * Version     :
- * Created on  : Dec 30, 2012
+ * Created on  : Jan 1, 2012
  *
- * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
  */
 
-#ifndef _LEDCHANNEL_H
-#define _LEDCHANNEL_H
-#include <Wt/WContainerWidget>
-#include <Wt/WGroupBox>
-#include <Wt/WSpinBox>
-#include <Wt/WSignal>
-#include <Wt/WText>
-#include <Wt/WBreak>
+#ifndef PLUGINLOADER_H_
+#define PLUGINLOADER_H_
+#include <dlfcn.h>
+#include <syslog.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <dirent.h>
+#include <errno.h>
+#include "AquariusPlugin.hpp"
 
-class LEDChannel : public Wt::WContainerWidget
-{
+class PluginLoader {
 public:
-    LEDChannel(const int channel, Wt::WContainerWidget *parent = 0);
-    Wt::Signal<int,int>& valueChanged() { return pwm_; }
-
-
+	PluginLoader();
+	virtual ~PluginLoader();
+	int loadPlugins(const char *path);
+	std::vector<AquariusPlugin*> getPlugins();
 private:
-private:
-    Wt::WGroupBox     *groupingBox_;
-    Wt::WSpinBox      *valueBox_;
-    Wt::WText         *text_;
-    Wt::Signal<int,int>   pwm_;
+	int tryToAdd(const char *file);
+	std::vector<AquariusPlugin*> plugins;
 
-    int               channel_;
-
-    void setPWM();
 };
 
-#endif
-
+#endif /* PLUGINLOADER_H_ */
