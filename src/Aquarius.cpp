@@ -25,19 +25,27 @@
 
 Aquarius::Aquarius(const Wt::WEnvironment& env) :
 		Wt::WApplication(env) {
+	this->setCssTheme("polished");
 	int pluginCount = 0;
-	unsigned int ii=0;
+	unsigned int ii = 0;
 	pl = new PluginLoader();
-	if (pl){
+	tabs = new Wt::WTabWidget(root());
+	Wt::WContainerWidget * summaryContainer = new Wt::WContainerWidget();
+	tabs->addTab(summaryContainer, "Summary");
+	if (pl) {
 		pluginCount = pl->loadPlugins("./");
-			if (pluginCount > 0){
-				for (ii=0; ii<pl->getPlugins().size(); ii++) {
-					std::cout << "Loading plugin"<<std::endl;
-					AquariusPlugin * plugin = pl->getPlugins()[ii];
-				    root()->addWidget(plugin->getTab());
-				}
+		if (pluginCount > 0) {
+			for (ii = 0; ii < pl->getPlugins().size(); ii++) {
+				std::cout << "Loading plugin" << std::endl;
+				AquariusPlugin * plugin = pl->getPlugins()[ii];
+				tabs->addTab(plugin->getTab(), plugin->getName());
+				summaryContainer->addWidget(plugin->getSummary());
 			}
+		}else{
+			summaryContainer->addWidget(new Wt::WText("<h2> Awww, you don't have any plugins installed</h2>"));
+		}
 	}
+	tabs->setCurrentIndex(0);
 
 }
 
@@ -46,7 +54,9 @@ Aquarius::~Aquarius() {
 }
 
 Wt::WApplication *createApplication(const Wt::WEnvironment& env) {
-	return new Aquarius(env);
+	Aquarius *aq = new Aquarius(env);
+	aq->setCssTheme("polished");
+	return aq;
 }
 
 int main(int argc, char **argv) {

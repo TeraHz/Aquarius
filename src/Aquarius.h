@@ -26,6 +26,8 @@
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 #include <Wt/WContainerWidget>
+#include <Wt/WTabWidget>
+#include <Wt/WText>
 #include "AquariusPlugin.hpp"
 #include "PluginLoader.h"
 
@@ -36,6 +38,7 @@ public:
     ~Aquarius();
 private:
     PluginLoader *pl;
+    Wt::WTabWidget *tabs;
 };
 
 #endif

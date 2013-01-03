@@ -22,7 +22,7 @@ void LEDPlugin::setPWM(int channel, int value) {
 
 Wt::WContainerWidget * LEDPlugin::getSummary() {
 	Wt::WContainerWidget *summaryContainer_ = new Wt::WContainerWidget();
-	summaryContainer_->addWidget(new Wt::WText("LEDs are on"));
+	summaryContainer_->addWidget(new Wt::WText("LED summary widget"));
 	return summaryContainer_;
 }
 

@@ -23,7 +23,7 @@ void PowerOutletPlugin::setOutlet(int pin, int state)
 
 Wt::WContainerWidget * PowerOutletPlugin::getSummary() {
 	Wt::WContainerWidget *summaryContainer_ = new Wt::WContainerWidget();
-	summaryContainer_->addWidget(new Wt::WText("LEDs are on"));
+	summaryContainer_->addWidget(new Wt::WText("Power Outlet summary widget"));
 	return summaryContainer_;
 }
 

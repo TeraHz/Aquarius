@@ -22,5 +22,5 @@ clean:
 
 copy:
 ifdef DISTPATH
-	cp $(NAME) $(DISTPATH)
+	cp $(NAME).so $(DISTPATH)
 endif
