@@ -40,7 +40,6 @@ public:
 private:
 	void setPWM(int channel, int value);
 	PCA9685 *pwmDriver;
-	LEDChannel *leds[16];
 	std::string name_;
 };
 #endif /* LEDPLUGIN_H_ */

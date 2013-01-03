@@ -36,8 +36,7 @@ public:
 	Wt::Signal<int, int>& valueChanged() {
 		return pwm_;
 	}
-
-private:
+	void setValue(int);
 private:
 	Wt::WGroupBox *groupingBox_;
 	Wt::WSpinBox *valueBox_;

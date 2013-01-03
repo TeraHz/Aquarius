@@ -37,16 +37,14 @@ int PluginLoader::loadPlugins(const char *path) {
 	if ((dp = opendir(path)) == NULL) {
 		perror("Could not open directory");
 		return errno;
-	}else{
-		std::cout << "Dir is open" << std::endl;
 	}
 	while ((dirp = readdir(dp)) != NULL) {
 		std::string entry = dirp->d_name;
-		std::cout << "Checking entry " << dirp->d_name << std::endl;
+//		std::cout << "Checking entry " << dirp->d_name << std::endl;
 
 		if (std::string::npos != entry.find("Plugin")) {
-			std::cout << "Possible plugin found. Let's try to load " << dirp->d_name << std::endl;
-			snprintf(pluginpath,255, "%s%s",path,entry.c_str());
+//			std::cout << "Possible plugin found. Let's try to load " << dirp->d_name << std::endl;
+			snprintf(pluginpath, 255, "%s%s", path, entry.c_str());
 			if (tryToAdd(pluginpath) == 0)
 				counter++;
 		}
@@ -55,35 +53,32 @@ int PluginLoader::loadPlugins(const char *path) {
 	return counter;
 }
 
-int PluginLoader::tryToAdd(const char *file){
-	std::cout << "trying to dlopen " << std::endl;
+int PluginLoader::tryToAdd(const char *file) {
 	void *plugin_h = dlopen(file, RTLD_NOW);
 	if (!plugin_h)
-		std::cout << "Could not open plugin "<< file << dlerror()<<std::endl;
-	std::cout << "past dlopen " << std::endl;
+		std::cout << "Could not open plugin " << file << dlerror() << std::endl;
 
 	create_t* create_plugin = (create_t*) dlsym(plugin_h, "create");
-    destroy_t* destroy_plugin = (destroy_t*) dlsym(plugin_h, "destroy");
+	destroy_t* destroy_plugin = (destroy_t*) dlsym(plugin_h, "destroy");
 
-    if (!create_plugin || !destroy_plugin){
-		std::cout << "Could not load symbols for "<< file << dlerror()<<std::endl;
+	if (!create_plugin || !destroy_plugin) {
+		std::cout << "Could not load symbols for " << file << dlerror()
+				<< std::endl;
 		return 1;
-    }
+	}
 
-	std::cout << "calling create_plugin" << std::endl;
 	AquariusPlugin * plugin = create_plugin();
 
-	std::cout << "done " << std::endl;
-
-    if (plugin){
-    	plugins.push_back(plugin);
-    	return 0;
-    }else
-		std::cout << "Could not create object pointer  "<< file << dlerror()<<std::endl;
+	if (plugin) {
+		plugins.push_back(plugin);
+		return 0;
+	} else
+		std::cout << "Could not create object pointer  " << file << dlerror()
+				<< std::endl;
 
 	return 1;
 }
 
-std::vector<AquariusPlugin*> PluginLoader::getPlugins(){
+std::vector<AquariusPlugin*> PluginLoader::getPlugins() {
 	return plugins;
 }

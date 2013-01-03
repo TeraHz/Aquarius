@@ -29,10 +29,10 @@ Wt::WContainerWidget * LEDPlugin::getSummary() {
 Wt::WContainerWidget * LEDPlugin::getTab() {
 	Wt::WContainerWidget *tabContainer_ = new Wt::WContainerWidget();
 	Wt::WTable *ledTable = new Wt::WTable(tabContainer_);
-	int ii;
+	uint8_t ii;
 		for (ii = 0; ii < 16; ii++) {
 			LEDChannel *led = new LEDChannel(ii + 1);
-			leds[ii] = led;
+			led->setValue(pwmDriver->getPWM(ii+1));
 			led->valueChanged().connect(this,&LEDPlugin::setPWM);
 			if (ii < 8)
 				ledTable->elementAt(0, ii)->addWidget(led);

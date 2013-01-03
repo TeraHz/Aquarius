@@ -42,3 +42,7 @@ LEDChannel::LEDChannel(int channel, WContainerWidget *parent) :
 void LEDChannel::setPWM() {
 	pwm_.emit(channel_, valueBox_->value());
 }
+
+void LEDChannel::setValue(int value){
+	valueBox_->setValue(value);
+}
