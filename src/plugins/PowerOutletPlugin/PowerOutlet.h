@@ -32,22 +32,25 @@
 #include <Wt/WBreak>
 #include <inttypes.h>
 
-class PowerOutlet : public Wt::WContainerWidget
-{
+class PowerOutlet: public Wt::WContainerWidget {
 public:
 	PowerOutlet(const int pin, Wt::WContainerWidget *parent = 0);
-    Wt::Signal<int,int>& valueChanged() { return state_; }
+	Wt::Signal<int, int>& valueChanged() {
+		return state_;
+	}
 
-    void setSelected(uint8_t);
+	void setSelected(uint8_t);
 private:
-    enum State { On = 1, Off = 0};
-    Wt::WGroupBox     *groupingBox_;
-    Wt::WButtonGroup   *buttonBox_;
-    Wt::Signal<int,int>   state_;
+	enum State {
+		On = 1, Off = 0
+	};
+	Wt::WGroupBox *groupingBox_;
+	Wt::WButtonGroup *buttonBox_;
+	Wt::Signal<int, int> state_;
 
-    int               pin_;
+	int pin_;
 
-    void setOutlet();
+	void setOutlet();
 };
 
 #endif

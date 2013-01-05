@@ -29,17 +29,17 @@
 #include "PowerOutlet.h"
 #include "AquariusPlugin.hpp"
 
-class PowerOutletPlugin : public AquariusPlugin {
+class PowerOutletPlugin: public AquariusPlugin {
 public:
 	PowerOutletPlugin();
 	virtual ~PowerOutletPlugin();
 	Wt::WContainerWidget * getSummary();
 	Wt::WContainerWidget * getTab();
 	std::string getName();
+	void refresh();
 private:
 	void setOutlet(int pin, int state);
 	MCP23008 *powerDriver;
-	PowerOutlet *pos[8];
 	std::string name_;
 
 };

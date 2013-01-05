@@ -34,7 +34,6 @@ Wt::WContainerWidget * PowerOutletPlugin::getTab() {
 		poTable = new Wt::WTable(tabContainer_);
 	    for (ii=0; ii<8; ii++){
 	           PowerOutlet *po = new PowerOutlet(ii+1);
-	           pos[ii] = po;
 	           po->setSelected(powerDriver->get(ii+1));
 	           po->valueChanged().connect(this, &PowerOutletPlugin::setOutlet);
 	           poTable->elementAt(0, ii)->addWidget(po);
@@ -44,6 +43,10 @@ Wt::WContainerWidget * PowerOutletPlugin::getTab() {
 
 std::string PowerOutletPlugin::getName() {
 	return name_;
+}
+
+void PowerOutletPlugin::refresh(){
+
 }
 
 // the class factories

@@ -26,8 +26,10 @@
 #include <Wt/WApplication>
 #include <Wt/WEnvironment>
 #include <Wt/WContainerWidget>
+#include <Wt/WOverlayLoadingIndicator>
 #include <Wt/WTabWidget>
 #include <Wt/WText>
+#include <vector>
 #include "AquariusPlugin.hpp"
 #include "PluginLoader.h"
 
@@ -36,7 +38,10 @@ class Aquarius : public Wt::WApplication
 public:
     Aquarius(const Wt::WEnvironment& env);
     ~Aquarius();
+    void load();
+    void updateTab(int tab);
 private:
+    std::vector<AquariusPlugin*> plugins;
     PluginLoader *pl;
     Wt::WTabWidget *tabs;
 };

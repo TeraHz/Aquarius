@@ -46,6 +46,10 @@ std::string LEDPlugin::getName() {
 	return name_;
 }
 
+void LEDPlugin::refresh(){
+
+}
+
 // the class factories
 
 extern "C" AquariusPlugin* create() {

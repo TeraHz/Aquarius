@@ -16,9 +16,9 @@
  * Name        : PowerOutlet.cpp
  * Author      : Georgi Todorov
  * Version     :
- * Created on  : Dec 30, 2012
+ * Created on  : Jan 3, 2013
  *
- * Copyright © 2012 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
  */
 #include "PowerOutlet.h"
 

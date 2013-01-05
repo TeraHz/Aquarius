@@ -13,34 +13,42 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : LEDPlugin.h
- * Author      : Georgi Todorov
- * Version     :
- * Created on  : Jan 1, 2013
+ * Name        : ThermometerPlugin.h
+ * Author      : Georgi Todorov <terahz@geodar.com>
+ * Version     : 
+ * Created on  : Jan 3, 2013
  *
- * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov <terahz@geodar.com>
  */
 
-#ifndef LEDPLUGIN_H_
-#define LEDPLUGIN_H_
-
+#ifndef THERMOMETERPLUGIN_H_
+#define THERMOMETERPLUGIN_H_
 #include <Wt/WContainerWidget>
 #include <Wt/WTable>
-#include "PCA9685.h"
-#include "LEDChannel.h"
+#include <Wt/WText>
+#include <Wt/WString>
+#include <dirent.h>
+#include <syslog.h>
+#include <errno.h>
+#include <vector>
+#include "Thermometer.h"
 #include "AquariusPlugin.hpp"
 
-class LEDPlugin : public AquariusPlugin {
+#define BUSPATH "/sys/bus/w1/devices/"
+
+class ThermometerPlugin: public AquariusPlugin {
 public:
-	LEDPlugin();
-	virtual ~LEDPlugin();
+	ThermometerPlugin();
+	virtual ~ThermometerPlugin();
 	Wt::WContainerWidget * getSummary();
 	Wt::WContainerWidget * getTab();
 	std::string getName();
 	void refresh();
 private:
-	void setPWM(int channel, int value);
-	PCA9685 *pwmDriver;
 	std::string name_;
+	std::vector<std::string> addresses_;
+	std::vector<Thermometer*> thermos_;
+
 };
-#endif /* LEDPLUGIN_H_ */
+
+#endif /* THERMOMETERPLUGIN_H_ */

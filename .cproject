@@ -20,7 +20,7 @@
 					<folderInfo id="0.720167743." name="/" resourcePath="">
 						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1459457412" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
 							<targetPlatform id="org.eclipse.cdt.build.core.prefbase.toolchain.1459457412.466287790" name=""/>
-							<builder arguments="DISTPATH=/mnt/aquarius/" buildPath="${workspace_loc:/Aquarius}/src" command="make" id="org.eclipse.cdt.build.core.settings.default.builder.1668346136" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
+							<builder arguments="DISTPATH=/mnt/aquarius/" buildPath="${workspace_loc:/Aquarius}/src" command="make" id="org.eclipse.cdt.build.core.settings.default.builder.1668346136" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" parallelBuildOn="false" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1246941751" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.578156165" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1817707587" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
@@ -33,6 +33,7 @@
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/sysroot/usr/include"/>
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include"/>
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include-fixed"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DS18B20/src}&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1022510341" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -48,6 +49,7 @@
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/sysroot/usr/include"/>
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include"/>
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include-fixed"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DS18B20/src}&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.644764685" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -62,6 +64,7 @@
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/arm-unknown-linux-gnueabi/sysroot/usr/include"/>
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include"/>
 									<listOptionValue builtIn="false" value="/home/terahz/x-tools6h/arm-unknown-linux-gnueabi/lib/gcc/arm-unknown-linux-gnueabi/4.7.2/include-fixed"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DS18B20/src}&quot;"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1428704956" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
@@ -97,4 +100,5 @@
 			</profile>
 		</scannerConfigBuildInfo>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

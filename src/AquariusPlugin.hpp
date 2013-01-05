@@ -34,6 +34,7 @@ public:
 	virtual Wt::WContainerWidget * getSummary() = 0;
 	virtual Wt::WContainerWidget * getTab() = 0;
 	virtual std::string getName() = 0;
+	virtual void refresh() = 0;
 
 };
 

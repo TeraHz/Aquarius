@@ -13,34 +13,42 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * Name        : LEDPlugin.h
- * Author      : Georgi Todorov
- * Version     :
- * Created on  : Jan 1, 2013
+ * Name        : Thermometer.h
+ * Author      : Georgi Todorov <terahz@geodar.com>
+ * Version     : 
+ * Created on  : Jan 3, 2013
  *
- * Copyright © 2013 Georgi Todorov  <terahz@geodar.com>
+ * Copyright © 2013 Georgi Todorov <terahz@geodar.com>
  */
 
-#ifndef LEDPLUGIN_H_
-#define LEDPLUGIN_H_
+#ifndef THERMOMETER_H_
+#define THERMOMETER_H_
 
 #include <Wt/WContainerWidget>
-#include <Wt/WTable>
-#include "PCA9685.h"
-#include "LEDChannel.h"
-#include "AquariusPlugin.hpp"
+#include <Wt/WGroupBox>
+#include <Wt/WText>
+#include <Wt/WString>
 
-class LEDPlugin : public AquariusPlugin {
+#include <DS18B20.h>
+
+class Thermometer: public Wt::WContainerWidget {
 public:
-	LEDPlugin();
-	virtual ~LEDPlugin();
-	Wt::WContainerWidget * getSummary();
-	Wt::WContainerWidget * getTab();
+	Thermometer(const char *, char *, Wt::WContainerWidget *parent = 0);
+
+	virtual ~Thermometer();
+	uint8_t getUnits();
+	void setUnits(uint8_t);
+	float getTemp();
 	std::string getName();
-	void refresh();
+	void setName(std::string);
+	void updateTemp();
 private:
-	void setPWM(int channel, int value);
-	PCA9685 *pwmDriver;
-	std::string name_;
+	char* address_;
+	char* name_;
+	Wt::WGroupBox *groupingBox_;
+	DS18B20 *dev;
+	Wt::WString temperature_;
+	Wt::WText * temptext_;
 };
-#endif /* LEDPLUGIN_H_ */
+
+#endif /* THERMOMETER_H_ */
