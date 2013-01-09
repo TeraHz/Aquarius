@@ -57,6 +57,7 @@ void Aquarius::load() {
 		}
 	}
 	tabs->setCurrentIndex(0);
+
 }
 
 void Aquarius::updateTab(int tab) {
@@ -69,13 +70,11 @@ void Aquarius::updateTab(int tab) {
 
 Wt::WApplication *createApplication(const Wt::WEnvironment& env) {
 	Aquarius *aq = new Aquarius(env);
-	Wt::WOverlayLoadingIndicator * loading = new Wt::WOverlayLoadingIndicator();
-	aq->setLoadingIndicator(loading);
+//	Wt::WOverlayLoadingIndicator * loading = new Wt::WOverlayLoadingIndicator();
+//	aq->setLoadingIndicator(loading);
 	aq->setCssTheme("polished");
-	aq->loadingIndicator()->widget()->show();
+	aq->enableUpdates(true);
 	aq->load();
-	aq->loadingIndicator()->widget()->hide();
-
 	return aq;
 }
 
