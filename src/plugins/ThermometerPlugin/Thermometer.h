@@ -26,9 +26,11 @@
 
 #include <Wt/WContainerWidget>
 #include <Wt/WGroupBox>
+#include <Wt/WApplication>
 #include <Wt/WText>
 #include <Wt/WString>
-
+#include <Wt/WTimer>
+#include <boost/thread.hpp>
 #include <DS18B20.h>
 
 class Thermometer: public Wt::WContainerWidget {
@@ -41,13 +43,13 @@ public:
 	float getTemp();
 	std::string getName();
 	void setName(std::string);
-	void updateTemp();
+	void updateTemp(Wt::WApplication *app);
 private:
+	Wt::WString temperature_;
 	char* address_;
 	char* name_;
 	Wt::WGroupBox *groupingBox_;
 	DS18B20 *dev;
-	Wt::WString temperature_;
 	Wt::WText * temptext_;
 };
 

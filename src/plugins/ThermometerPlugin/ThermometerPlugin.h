@@ -24,11 +24,13 @@
 #ifndef THERMOMETERPLUGIN_H_
 #define THERMOMETERPLUGIN_H_
 #include <Wt/WContainerWidget>
+#include <Wt/WApplication>
 #include <Wt/WTable>
 #include <Wt/WText>
 #include <Wt/WString>
 #include <dirent.h>
 #include <syslog.h>
+#include <boost/thread.hpp>
 #include <errno.h>
 #include <vector>
 #include "Thermometer.h"

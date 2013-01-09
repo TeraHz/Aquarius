@@ -25,21 +25,17 @@
 
 using namespace Wt;
 
-Thermometer::Thermometer(const char* address,char* name,
+Thermometer::Thermometer(const char* address, char* name,
 		Wt::WContainerWidget *parent) :
-		WContainerWidget(parent), name_(name) {
+		WContainerWidget(parent) {
 	address_ = strdup(address);
+	name_ = strdup(name);
+	dev = new DS18B20(address_);
 	temperature_ = Wt::WString("{1} &deg;");
 	temperature_.arg("0");
 	temptext_ = new Wt::WText(temperature_);
-	try {
-		dev = new DS18B20(address_);
-	} catch (int e) {
-		throw e;
-	}
 	groupingBox_ = new WGroupBox(name, this);
 	groupingBox_->addWidget(temptext_);
-
 }
 
 Thermometer::~Thermometer() {
@@ -56,13 +52,20 @@ uint8_t Thermometer::getUnits() {
 void Thermometer::setUnits(uint8_t u) {
 	dev->setUnits(u);
 }
+std::string Thermometer::getName() {
+	return name_;
+}
+void Thermometer::updateTemp(Wt::WApplication *app) {
 
-void Thermometer::updateTemp(){
 	temperature_ = Wt::WString("{1} &deg;");
 	char tmp[] = "000.000";
 	sprintf(tmp, "%3.3f", getTemp());
 	temperature_.arg(tmp);
-	temptext_->setText(temperature_);
-	printf("update triggered\n");
+	temperature_.toUTF8();
+	Wt::WApplication::UpdateLock uiLock(app);
+	if (uiLock) {
+		temptext_->setText(temperature_);
+		app->triggerUpdate();
+	}
 }
 

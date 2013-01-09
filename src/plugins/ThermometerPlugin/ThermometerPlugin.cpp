@@ -25,12 +25,14 @@
 
 ThermometerPlugin::ThermometerPlugin() {
 	name_ = "Temperature";
+
 	DIR *dirp;
 	struct dirent *dp;
 	dirp = opendir(BUSPATH);
 	if (dirp == NULL) {
 		perror("opendir failed");
 	}
+
 	for (;;) {
 		errno = 0; /* To distinguish error from end-of-directory */
 		dp = readdir(dirp);
@@ -39,14 +41,13 @@ ThermometerPlugin::ThermometerPlugin() {
 		if (strcmp(dp->d_name, ".") == 0 || strcmp(dp->d_name, "..") == 0
 				|| strcmp(dp->d_name, "w1_bus_master1") == 0)
 			continue; /* Skip .  .. and w1_bus_master1 */
-//		printf("found directory %s. Adding to vector\n", dp->d_name);
 		addresses_.push_back(dp->d_name);
 	}
+
 	if (errno != 0)
 		perror("readdir");
 	if (closedir(dirp) == -1)
 		perror("closedir");
-
 }
 
 ThermometerPlugin::~ThermometerPlugin() {
@@ -69,7 +70,6 @@ Wt::WContainerWidget * ThermometerPlugin::getTab() {
 		char ntitle[12];
 		sprintf(ntitle, "Probe %d", ii + 1);
 		try {
-//			printf("Trying new thermometer with %s\n", addresses_[ii].c_str());
 			Thermometer * t = new Thermometer(addresses_[ii].c_str(), ntitle);
 			thermos_.push_back(t);
 			tTable->elementAt((int) ii / 8, ii % 8)->addWidget(t);
@@ -78,6 +78,8 @@ Wt::WContainerWidget * ThermometerPlugin::getTab() {
 			perror("OOPS");
 		}
 	}
+	refresh();
+
 	return tabContainer_;
 }
 
@@ -87,8 +89,11 @@ std::string ThermometerPlugin::getName() {
 
 void ThermometerPlugin::refresh() {
 	unsigned int ii = 0;
-	for (ii = 0; ii < thermos_.size(); ii++){
-		thermos_[ii]->updateTemp();
+	Wt::WApplication *app = Wt::WApplication::instance();
+	for (ii = 0; ii < thermos_.size(); ii++) {
+		Thermometer *thermo = (Thermometer *) thermos_[ii];
+		new boost::thread(
+				boost::bind(&Thermometer::updateTemp, thermo, app));
 	}
 }
 
