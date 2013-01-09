@@ -29,6 +29,7 @@
 #include <Wt/WOverlayLoadingIndicator>
 #include <Wt/WTabWidget>
 #include <Wt/WText>
+#include <Wt/WTimer>
 #include <vector>
 #include "AquariusPlugin.hpp"
 #include "PluginLoader.h"
@@ -41,9 +42,11 @@ public:
     void load();
     void updateTab(int tab);
 private:
+    void refresh();
     std::vector<AquariusPlugin*> plugins;
     PluginLoader *pl;
     Wt::WTabWidget *tabs;
+    Wt::WTimer *timer;
 };
 
 #endif

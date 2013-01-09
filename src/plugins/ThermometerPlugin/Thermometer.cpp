@@ -56,16 +56,16 @@ std::string Thermometer::getName() {
 	return name_;
 }
 void Thermometer::updateTemp(Wt::WApplication *app) {
-
 	temperature_ = Wt::WString("{1} &deg;");
 	char tmp[] = "000.000";
 	sprintf(tmp, "%3.3f", getTemp());
 	temperature_.arg(tmp);
-	temperature_.toUTF8();
 	Wt::WApplication::UpdateLock uiLock(app);
 	if (uiLock) {
 		temptext_->setText(temperature_);
 		app->triggerUpdate();
+		printf("Update triggered for %s\n", temperature_.toUTF8().c_str());
 	}
+
 }
 

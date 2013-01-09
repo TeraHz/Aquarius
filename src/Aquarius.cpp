@@ -28,6 +28,10 @@ Aquarius::Aquarius(const Wt::WEnvironment& env) :
 	pl = new PluginLoader();
 	tabs = new Wt::WTabWidget(root());
 	tabs->currentChanged().connect(this, &Aquarius::updateTab);
+	timer = new Wt::WTimer();
+	timer->setInterval(30000);
+	timer->timeout().connect(this, &Aquarius::refresh);
+	timer->start();
 }
 
 Aquarius::~Aquarius() {
@@ -42,9 +46,7 @@ void Aquarius::load() {
 		pluginCount = pl->loadPlugins("./");
 		if (pluginCount > 0) {
 			for (ii = 0; ii < pl->getPlugins().size(); ii++) {
-				std::cout << "Loading plugin" << std::endl;
 				AquariusPlugin * plugin = pl->getPlugins()[ii];
-				printf("Adding tab %d %s\n", ii, plugin->getName().c_str());
 				plugins.push_back(plugin);
 				tabs->addTab(plugin->getTab(), plugin->getName());
 				summaryContainer->addWidget(plugin->getSummary());
@@ -68,13 +70,19 @@ void Aquarius::updateTab(int tab) {
 	}
 }
 
+void Aquarius::refresh(){
+	unsigned int ii;
+	for (ii = 0; ii < plugins.size(); ii++){
+		plugins[ii]->refresh();
+	}
+}
+
 Wt::WApplication *createApplication(const Wt::WEnvironment& env) {
 	Aquarius *aq = new Aquarius(env);
-//	Wt::WOverlayLoadingIndicator * loading = new Wt::WOverlayLoadingIndicator();
-//	aq->setLoadingIndicator(loading);
 	aq->setCssTheme("polished");
-	aq->enableUpdates(true);
 	aq->load();
+	aq->enableUpdates(true);
+
 	return aq;
 }
 
