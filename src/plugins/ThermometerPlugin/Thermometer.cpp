@@ -27,10 +27,8 @@ using namespace Wt;
 
 Thermometer::Thermometer(const char* address, char* name,
 		Wt::WContainerWidget *parent) :
-		WContainerWidget(parent) {
-	address_ = strdup(address);
-	name_ = strdup(name);
-	dev = new DS18B20(address_);
+		WContainerWidget(parent), name_(strdup(name)) {
+	dev = new DS18B20(address);
 	temperature_ = Wt::WString("{1} &deg;");
 	temperature_.arg("0");
 	temptext_ = new Wt::WText(temperature_);

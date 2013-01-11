@@ -91,8 +91,7 @@ void ThermometerPlugin::refresh() {
 	unsigned int ii = 0;
 	Wt::WApplication *app = Wt::WApplication::instance();
 	for (ii = 0; ii < thermos_.size(); ii++) {
-		new boost::thread(
-				boost::bind(&Thermometer::updateTemp, thermos_[ii], app));
+		boost::thread(boost::bind(&Thermometer::updateTemp, thermos_[ii], app));
 	}
 }
 

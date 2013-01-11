@@ -46,7 +46,6 @@ public:
 	void updateTemp(Wt::WApplication *app);
 private:
 	Wt::WString temperature_;
-	char* address_;
 	char* name_;
 	Wt::WGroupBox *groupingBox_;
 	DS18B20 *dev;
