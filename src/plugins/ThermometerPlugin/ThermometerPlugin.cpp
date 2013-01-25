@@ -51,6 +51,9 @@ ThermometerPlugin::ThermometerPlugin() {
 }
 
 ThermometerPlugin::~ThermometerPlugin() {
+	for (unsigned int i = 0; i < thermos_.size();i++){
+		delete thermos_[i];
+	}
 }
 
 Wt::WContainerWidget * ThermometerPlugin::getSummary() {

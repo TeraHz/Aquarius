@@ -35,6 +35,7 @@ Aquarius::Aquarius(const Wt::WEnvironment& env) :
 }
 
 Aquarius::~Aquarius() {
+	delete(pl);
 }
 
 void Aquarius::load() {

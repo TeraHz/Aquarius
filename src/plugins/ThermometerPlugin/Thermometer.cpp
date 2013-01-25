@@ -62,7 +62,7 @@ void Thermometer::updateTemp(Wt::WApplication *app) {
 	if (uiLock) {
 		temptext_->setText(temperature_);
 		app->triggerUpdate();
-		printf("Update triggered for %s\n", temperature_.toUTF8().c_str());
+		//printf("Update triggered for %s\n", temperature_.toUTF8().c_str());
 	}
 
 }

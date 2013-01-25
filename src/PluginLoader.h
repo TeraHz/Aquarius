@@ -41,7 +41,7 @@ public:
 private:
 	int tryToAdd(const char *file);
 	std::vector<AquariusPlugin*> plugins;
-
+    std::vector<destroy_t *> plugin_destructor;
 };
 
 #endif /* PLUGINLOADER_H_ */

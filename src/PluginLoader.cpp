@@ -27,6 +27,11 @@ PluginLoader::PluginLoader() {
 }
 
 PluginLoader::~PluginLoader() {
+	for (unsigned int i = 0; i < plugins.size(); i++){
+		//printf("Destroying plugin %d, %s\n", i, plugins[i]->getName().c_str());
+		plugin_destructor[i](plugins[i]);
+	}
+
 }
 int PluginLoader::loadPlugins(const char *path) {
 	int counter = 0;
@@ -71,6 +76,7 @@ int PluginLoader::tryToAdd(const char *file) {
 
 	if (plugin) {
 		plugins.push_back(plugin);
+		plugin_destructor.push_back(destroy_plugin);
 		return 0;
 	} else
 		std::cout << "Could not create object pointer  " << file << dlerror()

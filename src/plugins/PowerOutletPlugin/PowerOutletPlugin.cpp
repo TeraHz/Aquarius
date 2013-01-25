@@ -13,6 +13,7 @@ PowerOutletPlugin::PowerOutletPlugin() {
 }
 
 PowerOutletPlugin::~PowerOutletPlugin() {
+
 	delete powerDriver;
 }
 
